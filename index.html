@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Baltic Timber Exports to Iberia</title>
+  <!-- favicon -->
+  <link ref='icon' type='image/png' href='leaflet/images/marker-icon.png' />
+  <!-- css files -->
+  <link rel='stylesheet' href='css/normalize.css' />
+  <link rel='stylesheet' href='leaflet/leaflet.css' />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+  <link rel='stylesheet' href='css/main.css' />
+</head>
+
+<body>
+  <!-- controls div -->
+  <div id='controls' class='expanded'>
+    <!-- filters -->
+    <div id='filters'>
+      <h1>Filter Options</h1>
+      <form id="options" onsubmit="return false">
+        <span class="optionHead">Origin Port(s):</span><br>
+        <select id="from" class="filter multi-select" name="from" multiple="">
+        </select><br>
+        <span class="optionHead">Destination Port(s):</span><br>
+        <select id="to" class="filter multi-select" name="to" multiple="">
+        </select><br>
+        <span class="optionHead">Commodities:</span><br>
+        <select id="products" class="filter multi-select" name="products" multiple="">
+        </select><br>
+        <span class="optionHead years">Start Year:</span>
+        <input placeholder="1634" class="filter" type="text" name="startYear" id="startYear"></input><br>
+        <span class="optionHead years">End Year:</span>
+        <input placeholder="1857" class="filter" type="text" name="endYear" id="endYear"></input><br>
+        <div id="totals">
+          <input checked type="radio" id="shipments" class="filter" value="shipments" name="total">
+          <label for="shipments">Shipments</label>
+          <input type="radio" id="cargoes" class="filter" value="cargoes" name="total">
+          <label for="cargoes">Cargoes</label>
+          <input type="radio" id="volume" class="filter" value="volume" name="total">
+          <label for="volume">Volume</label>
+        </div>
+        <!-- <input type="submit" value="Update" id="submitButton"> -->
+      </form>
+      <div id="explanation">
+        <p id="shipmentsInfo" class="note"><strong>Shipments</strong> counts each voyage once regardless of how many different commodities it carried.</p>
+        <p id="cargoesInfo" class="note"><strong>Cargoes</strong> counts each distinct commodity a ship carried once.</p>
+        <p id="volumeInfo" class="note"><strong>Volume</strong> returns the estimated volume of the commodities in m<sup>3</sup>.</p>
+      </div>
+      <!-- disclaimer -->
+      <div id="info">
+        <p class="note">This application contains a standardized cross-section of
+          the <a href="http://soundtoll.nl/index.php/en/" target="blank">Sound Toll Registers Online</a>
+          database representing timber products shipped to the Iberian Peninsula.
+          It is intended for demonstration purposes only.</p>
+        <p class="note">&copy; 2018 Nathan Gallagher</p>
+      </div>
+    </div>
+    <!-- Toggle buttons to switch between map and graph -->
+    <div id="toggles">
+      <button disabled id="mapToggle">Map</button>
+      <button id="graphToggle">Graph</button>
+    </div>
+
+    <a id="download" class="hidden" href="#">Download</a>
+    <br />
+
+    <!-- Displays while loading -->
+    <div id="loading">
+      <p>Loading...</p>
+    </div>
+    <!-- Menu button -->
+    <span id='menu'><b>&#9747;</b></span>
+  </div>
+
+  <!-- map container -->
+  <div id='mapid'>
+    <div id='mapLegend'>
+      <h3>Map legend</h3>
+      <div class='legendEntry'><div class='key' id='originKey'></div>Origin Port</div>
+      <div class='legendEntry'><div class='key' id='destinationKey'></div>Destination Port</div>
+    </div>
+  </div>
+  <!-- graph container -->
+  <div id='viz-container' class='fixed'>
+    <h3 id='viz-title'>Baltic Timber cargoes to the Iberian Peninsula</h3>
+    <div id='viz-wrapper'></div>
+    <div id='viz-label'>
+    </div>
+  </div>
+
+  <div id="previewImage">
+  </div>
+
+  <!-- javascript files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src='js/html2canvas.js'></script>
+  <script src='leaflet/leaflet.js'></script>
+  <script src='js/leaflet-providers.js'></script>
+  <script src='https://d3js.org/d3.v4.js'>//note: d3 v3 and v4 return objects, d5 returns promise</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <script src='js/config.js'></script>
+  <script src='js/functions.js'></script>
+  <script src='js/app.js'></script>
+</body>
